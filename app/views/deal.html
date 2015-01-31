@@ -1,0 +1,114 @@
+<ion-view title='Deal Info'>
+	<ion-content has-header="true" padding="true">
+	<form name='dealForm'>
+		<ion-list>
+
+			<!-- Deal Name -->
+			<label class='item item-divider'>
+				Basic Information
+			</label>
+			<label class="item item-input">
+		    	<input ng-model='tour.name' name="dealName" type="text" placeholder="Deal Name" required/>
+		    	<i class="icon ion-alert-circled placeholder-icon" ng-hide='dealForm.dealName.$valid'></i>
+			</label>
+
+			<!-- Direct Toggle -->
+			<div class="item item-toggle">
+				Direct? 
+				<label class='toggle toggle-teneight'>
+					<input ng-model="tour.direct" type="checkbox">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
+			<!-- Tenant Rep Broker Information -->
+			<label class='item item-divider' ng-hide='tour.direct'>
+				Tenant Rep Information
+			</label>
+
+			<label class='item item-divider' ng-show='tour.direct'>
+				Contact Information
+			</label>
+
+			<!-- Show when not toggled -->
+			<div id='tenant-rep-contact' ng-hide='tour.direct'>
+				
+				<label class='item item-input'>
+					<input type='email' name="trbrokeremail" placeholder='Tenant Rep Broker Email' ng-model='tour.trbrokeremail' required>
+					<i class="icon ion-alert-circled placeholder-icon" ng-hide='dealForm.trbrokeremail.$valid'></i>
+				</label>
+
+				<label class='item item-input'>
+					<input type='text' name="trbrokername" placeholder='Tenant Rep Broker Name' ng-model='tour.trbrokername' ng-disabled='tour.trbrokeremail == null' required/>
+					<i class="icon ion-alert-circled placeholder-icon" ng-hide='dealForm.trbrokername.$valid'></i>
+				</label>
+
+				<label class='item item-input'>
+					<input type='text' name="trbrokercompany" placeholder='Tenant Rep Broker Company' ng-model='tour.trbrokercompany' ng-disabled='tour.trbrokeremail == null' required>
+					<i class="icon ion-alert-circled placeholder-icon" ng-hide='dealForm.trbrokercompany.$valid'></i>
+				</label>
+
+				<label class='item item-input'>
+					<input type='text' name="client" placeholder='Tenant Name' ng-model='tour.client' ng-disabled='tour.trbrokeremail == null'>
+				</label>
+			</div>
+
+			<div id='direct-contact' ng-show='tour.direct'>
+				<label class='item item-input'>
+					<input type='email' placeholder='Contact Email' ng-model='tour.contact_email'>
+				</label>
+
+				<label class='item item-input'>
+					<input type='text' placeholder='Contact Name' ng-model='tour.contact_name'>
+				</label>
+
+				<label class='item item-input'>
+					<input type='text' name="client" placeholder='Tenant Name' ng-model='tour.client'>
+				</label>
+			</div>
+
+
+			<!-- Lease or Purchase Radio Buttons -->
+			<label class='item item-divider'>
+				Lease or Purchase?
+			</label>
+
+			<label class='item item-radio'>
+				<input type='radio' name='group' ng-model='tour.lp' value='1'> 
+				<div class='item item-content'>
+					Lease
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+
+			<label class='item item-radio'>
+				<input type='radio' name='group' ng-model='tour.lp' value='2'>
+				<div class='item item-content'>
+					Purchase
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+
+
+			<!-- Start and End Dates of Lease -->
+			<label class='item item-divider'>
+				Inquiry Date
+			</label>
+
+			<label class='item item-input'>
+				<span class="input-label">Inquiry Date</span>
+				<input type='date' ng-model='tour.inquiry_date' required>
+			</label>
+
+			<!-- <label class='item item-input'>
+				<span class="input-label">End Date</span>
+				<input type='Date' ng-model='formdata.end_date' required>
+			</label> -->
+
+			<a ng-click='submit()' class='button button-block button-light'>Create Deal</a>
+		</ion-list>
+	</form>
+	</ion-content>
+</ion-view>

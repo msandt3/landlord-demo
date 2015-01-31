@@ -1,0 +1,34 @@
+<ion-view title='Select Floorplans'>
+	<ion-nav-buttons side="right">
+		<button class="button button-clear icon-right ion-ios7-arrow-forward" ng-click="next()"></button>
+	</ion-nav-buttons>
+
+	<ion-content has-header="true" padding="true">
+
+		<div class='text-center' ng-hide='floorplans'>
+			<h5>No Floorplans Match Your Selection</h5>
+		</div>
+		<div ng-show='floorplans' ng-repeat='building in floorplans'>
+
+			<div class='item item-divider'>
+				{{building.name}} {{building.address ? " - "+building.address : ""}}
+			</div>
+
+			<ul class='rig'>
+				<li ng-repeat='floorplan in building.floorplans'>
+					<label class='checkbox checkbox-teneight'>
+						<img ng-src='{{floorplan.floorplan.thumb.url}}' />
+						<h5>Suite Name: {{floorplan.suitename}}</h5>
+						<h5>RSF Low: {{floorplan.sqft.toLocaleString()}}</h5>
+						<h5>RSF High: {{floorplan.sqft_high ? floorplan.sqft_high.toLocaleString() : "N/A"}}</h5>
+						<br/><br/>
+						<input type='checkbox' ng-checked='selectedFloorplans.indexOf(floorplan.id) > -1' ng-click='toggleSelection(floorplan.id)' floorplan>
+					</label>
+				</li>
+			</ul>
+		</div>
+
+		<a href='#/deal' class='button button-block button-light'>Next</a>
+
+	</ion-content>
+</ion-view>
